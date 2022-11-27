@@ -9,9 +9,13 @@ import shop from "../Images/shop.png"
 import settings from "../Images/settings.png"
 import logOut from "../Images/exit.png"
 import ava from "../Images/ava.png"
-
+import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 function RightMenu() {
+
+  const navigate = useNavigate();
+
   return (
     <Grid container className='rightMenuSettings' direction="column">
         <Grid xs={2.6} item container direction="row">
@@ -38,9 +42,9 @@ function RightMenu() {
                     <img src={home} style={{height:"20px"}}></img>
                 </Grid>
                 <Grid xs={9}  className='choise_settings_texture' item container justifyContent="flex-start" alignContent="center" style={{color:"white",fontSize:"14px"}}>
-                    <Grid item>
+                    <Link to="posts" style={{width:"100%",height:"100%",alignItems:"center",display:"flex"}}>
                         Home
-                    </Grid>
+                    </Link>
                 </Grid>
             </Grid>
 
@@ -49,11 +53,12 @@ function RightMenu() {
                     <img src={chat} style={{height:"20px"}}></img>
                 </Grid>
                 <Grid xs={9} className='choise_settings_texture' item container justifyContent="flex-start" alignContent="center" style={{color:"white",fontSize:"14px"}}>
-                    <Grid item>
+                    <Link to="chat" style={{width:"100%",height:"100%",alignItems:"center",display:"flex"}}>
                         Chat
-                    </Grid>
+                    </Link>
                 </Grid>
             </Grid>
+            
             <Grid xs={1.8} item container>
                 <Grid xs={3} item container justifyContent="center" alignContent="center">
                     <img src={shop} style={{height:"20px"}}></img>

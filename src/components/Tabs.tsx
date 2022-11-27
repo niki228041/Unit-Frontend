@@ -8,6 +8,9 @@ import { Grid } from '@mui/material'
 import choise from '../Images/NotChoised.png'
 import Chat from './Chat'
 
+import { Outlet } from 'react-router-dom'
+console.log(window.location.pathname);
+
 function Tabs() {
   return (
     <>
@@ -32,16 +35,15 @@ function Tabs() {
                     {/* <Grid item>
                         <MainPost/>
                     </Grid> */}
-
-                    <Grid item>
-                        <Chat/>
-                    </Grid>
+                    <Outlet/>
+                    
 
                 </Grid>
                 <Grid xs={1.5} item>
                     <RightMenu/>
                 </Grid>
             </Grid>
+        
         {/* </div> */}
     </>
   )
