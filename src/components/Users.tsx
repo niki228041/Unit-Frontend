@@ -13,9 +13,9 @@ const Users=()=>{
                 const response = await axios.get('/User/GetAllUsers',{
                     signal:controller.signal
                 });
-                console.log(response.data.message);
+                (response.data.message);
                 let newArr = response.data.message.split('|');
-                console.log(newArr);
+                (newArr);
                 isMounted && setUsers(newArr);
             }catch(err){
                 console.error(err);

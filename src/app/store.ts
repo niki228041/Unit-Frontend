@@ -1,15 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from '../features/counter/counter-slice';
-import {apiSlice} from '../features/dogs/dogs'
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import counterReducer from '../features/user/user-slice';
+import userSlice from '../features/user/user-slice'
+
+import { apiSlice } from "../features/user/apiSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [apiSlice.reducerPath]:apiSlice.reducer,
+    user: userSlice,
   },
-  middleware:(getDefaultMiddleware)=>{
-    return getDefaultMiddleware().concat(apiSlice.middleware);
-  },
+  middleware:getDefaultMiddleware=>getDefaultMiddleware().concat(apiSlice.middleware)
 });
 
 export type AppDispatch = typeof store.dispatch;

@@ -9,7 +9,7 @@ import choise from '../Images/NotChoised.png'
 import Chat from './Chat'
 
 import { Outlet } from 'react-router-dom'
-console.log(window.location.pathname);
+// (window.location.pathname);
 
 function Tabs() {
   return (

@@ -11,10 +11,22 @@ import logOut from "../Images/exit.png"
 import ava from "../Images/ava.png"
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import { RemoveTokens } from '../api/jwtDecodeToken'
+import { useDispatch } from 'react-redux'
+import { AuthUser } from '../features/user/user-slice'
 
 function RightMenu() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+    const LogOut=()=>{
+        dispatch(AuthUser(""));
+        RemoveTokens();
+
+        navigate("/login");
+    }
+
 
   return (
     <Grid container className='rightMenuSettings' direction="column">
@@ -86,9 +98,9 @@ function RightMenu() {
                     <img src={logOut} style={{height:"20px"}}></img>
                 </Grid>
                 <Grid xs={9} className='choise_settings_texture' item container justifyContent="flex-start" alignContent="center" style={{color:"white",fontSize:"14px"}}>
-                    <Grid item>
+                    <div style={{width:"100%",height:"100%",alignItems:"center",display:"flex"}} onClick={LogOut}>
                         Log Out
-                    </Grid>
+                    </div>
                 </Grid>
             </Grid>
 
