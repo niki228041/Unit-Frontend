@@ -14,6 +14,7 @@ import like from '../Images/heart.png'
 import views from '../Images/views.png'
 
 import mainPic from '../Images/rei_2.jpg'
+import choise from '../Images/NotChoised.png'
 
 const mdTheme = createTheme();
 

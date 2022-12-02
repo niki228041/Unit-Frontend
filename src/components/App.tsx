@@ -16,6 +16,7 @@ import { BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import NotFound from './NotFound';
 import { useState } from 'react';
+import Profile from './Profile';
 
 
 
@@ -78,10 +79,7 @@ const App:React.FC=()=>{
                   <MainPost/>
                 </>}>
             </Route>
-            <Route path='search' element={
-                <>
-                </>}>
-            </Route>
+            <Route path="profile/:userId" element={<Profile/>} />
                 
             </Route>
         </>

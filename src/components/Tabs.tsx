@@ -16,22 +16,25 @@ function Tabs() {
     <>
         {/* <div className='flexForComponents'> */}
             <Grid container direction="row" >
-                <Grid xs={2.5} item  marginTop={12}>
+                <Grid xs={2} item  marginTop={12}>
                     <LeftMenu/>
                 </Grid>
-                <Grid xs={7.5}  item container direction="column" justifyContent="flex-start" alignContent="center">
-                    <Grid style={{height:"100px"}} item container>
-                        <Grid item container style={{color:"white"}}  alignContent="flex-end" justifyContent="flex-start" marginBottom="10px">
-                            <Grid className='homeOrForYouOption' container item xs={1.3} justifyContent="center" style={{fontSize:"14px"}}>
-                                <img src={choise} style={{height:"3px",marginBottom:"10px"}} ></img>
-                                HOME
-                            </Grid>
-                            <Grid className='homeOrForYouOption' container item xs={1.3} justifyContent="center" style={{fontSize:"14px",marginLeft:"10px"}}>
-                                <img src={choise} style={{height:"3px",marginBottom:"10px"}} ></img>
-                                FOR YOU
-                            </Grid>
+                <Grid xs={8}  item container direction="column" justifyContent="flex-start" alignContent="center">
+                    
+
+                <Grid style={{height:"100px"}} item container>
+                    <Grid item container style={{color:"white"}}  alignContent="flex-end" justifyContent="flex-start" marginBottom="10px">
+                        <Grid className='homeOrForYouOption' container item xs={1.3} justifyContent="center" style={{fontSize:"14px"}}>
+                            <img src={choise} style={{height:"3px",marginBottom:"10px"}} ></img>
+                            HOME
+                        </Grid>
+                        <Grid className='homeOrForYouOption' container item xs={1.3} justifyContent="center" style={{fontSize:"14px",marginLeft:"10px"}}>
+                            <img src={choise} style={{height:"3px",marginBottom:"10px"}} ></img>
+                            FOR YOU
                         </Grid>
                     </Grid>
+                </Grid>
+
                     {/* <Grid item>
                         <MainPost/>
                     </Grid> */}

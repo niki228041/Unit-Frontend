@@ -47,9 +47,32 @@ export const apiSlice:any = createApi({
           }),
           providesTags:result=>['Contacts']
         }),
+        addContact:builder.mutation<any,any>({
+          query:(todo)=>({
+            url:'/User/AddContactToUser',
+            method:"POST",
+            contentType: 'application/json',
+            body:todo
+          }),
+          invalidatesTags:['Contacts']
+        }),
+        getUsers:builder.query<any,undefined>({
+          query:(todo)=>({
+            url:'/User/GetAllUsers',
+            method:"GET",
+            body:todo
+          }),
+        }),
+        getUser:builder.query<any,any>({
+          query:(todo)=>({
+            url:'/User/GetUserById',
+            method:"POST",
+            body:todo
+          }),
+        }),
     })
 })
 
 
-export const{useGetMessagesQuery,useGetChatsQuery,useGetContactsQuery} = apiSlice
+export const{useGetMessagesQuery,useGetChatsQuery,useGetContactsQuery,useGetUsersQuery,useGetUserQuery} = apiSlice
 

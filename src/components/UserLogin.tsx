@@ -1,11 +1,18 @@
 import { Button, Grid, Input } from "@mui/material";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import {useSelector,useDispatch} from "react-redux"
 import { login,registration,postLogin,getUsers} from "../features/user/user-slice";
-import { useEffect } from "react";
+import { useEffect, useState  } from "react";
 import { Box } from "@mui/system";
+import { useFormik } from 'formik';
+import {Formik,Field,ErrorMessage} from "formik"
+import TextField from '@mui/material/TextField';
+import {LoginSchema} from "../validation/validation"
+
+
+const InitialValue = {email: "",password:"",rememberMe:false};
+
 
 const UserLogin=()=>{
 
@@ -33,7 +40,6 @@ const UserLogin=()=>{
         dispatch(postLogin(user));
         navigate("/user/posts");
     }
-    
 
     const userInputUnit=(inputName:string,isPassword:boolean=false)=>{
         var typeOfInput = "";
@@ -53,55 +59,63 @@ const UserLogin=()=>{
     return<>
         <Box component="form" onSubmit={handleSubmit}>
         <Grid container justifyContent="center" alignContent="center" >
-                <Grid item container style={{height:"750px",width:"600px",background:"#5d5985"}} marginTop={12} borderRadius={2} direction="column">
-                    <Grid item container xs={2} style={{fontSize:"60px",color:"white"}} padding={2} justifyContent="center" alignContent="center">
-                        Sign in
-                    </Grid>
+
+            <Grid item container style={{height:"750px",width:"600px",background:"#5d5985"}} marginTop={12} borderRadius={2} direction="column">
+                <Grid item container xs={2} style={{fontSize:"60px",color:"white"}} padding={2} justifyContent="center" alignContent="center">
+                    Sign in
+                </Grid>
     
-                    <Grid item container xs={7} direction="row" padding={2} justifyContent="center">
-                        <Grid item container xs={8} direction="column">
-                            {userInputUnit("Email")}
-                            {userInputUnit("Password",true)}
-                                <Grid item xs={0.1}  marginTop={2}>
-                                    Don't have an account yet?{" "} {" "}  
-                                    <Link to="/registration">
-                                        Click hier
-                                    </Link>
-                                </Grid>
+                <Grid item container xs={7} direction="row" padding={2} justifyContent="center">
+                    <Grid item container xs={8} direction="column">
+
+
+                        
+
+                        
+
+                        {userInputUnit("Email")}
+                        {userInputUnit("Password",true)}
+                            <Grid item xs={0.1}  marginTop={2}>
+                                Don't have an account yet?{" "} {" "}  
+                                <Link to="/registration">
+                                    Click hier
+                                </Link>
+                            </Grid>
     
-                            <Grid container xs={2} item direction="column" justifyContent="flex-end">
-                                <Grid item xs={1} marginLeft={1} marginRight={1} style={{color:"white"}}>
-                                </Grid>
-                                <Grid xs={9.1} item container marginLeft={1} marginRight={1} paddingRight={1} direction="row" alignContent="center">
-                                    {rememberMe_ ?
-                                        <Grid item xs={1.65} borderRadius={2} className="checkbutton_active">
-                                            <div style={{height:"100%"}} onClick={handleCheckBox}>
-                                            </div>
-                                        </Grid> : 
-                                        <Grid item xs={1.65} borderRadius={2} className="checkbutton">
-                                            <div style={{height:"100%"}} onClick={handleCheckBox}>
-                                            </div>
-                                        </Grid>
-                                     }
-                                    
-                                    <Grid item container xs={8} marginLeft={1} marginRight={1} style={{color:"white"}} alignContent="center">
-                                        <Grid item>
-                                            Remember Me
-                                        </Grid>
+                        <Grid container xs={2} item direction="column" justifyContent="flex-end">
+                            <Grid item xs={1} marginLeft={1} marginRight={1} style={{color:"white"}}>
+                            </Grid>
+                            <Grid xs={9.1} item container marginLeft={1} marginRight={1} paddingRight={1} direction="row" alignContent="center">
+                                {rememberMe_ ?
+                                    <Grid item xs={1.65} borderRadius={2} className="checkbutton_active">
+                                        <div style={{height:"100%"}} onClick={handleCheckBox}>
+                                        </div>
+                                    </Grid> : 
+                                    <Grid item xs={1.65} borderRadius={2} className="checkbutton">
+                                        <div style={{height:"100%"}} onClick={handleCheckBox}>
+                                        </div>
+                                    </Grid>
+                                 }
+                                
+                                <Grid item container xs={8} marginLeft={1} marginRight={1} style={{color:"white"}} alignContent="center">
+                                    <Grid item>
+                                        Remember Me
                                     </Grid>
                                 </Grid>
                             </Grid>
-                                 
-                                 
                         </Grid>
-                    </Grid>
-                                 
-                    <Grid item container xs={2} padding={3} justifyContent="center" alignContent="center" marginTop={-12}>
-                        <Button className="readyFormButton" style={{width:"70%"}} type="submit">
-                            Ready
-                        </Button>
+                             
+                             
                     </Grid>
                 </Grid>
+                             
+                <Grid item container xs={2} padding={3} justifyContent="center" alignContent="center" marginTop={-12}>
+                    <Button className="readyFormButton" style={{width:"70%"}} type="submit">
+                        Ready
+                    </Button>
+                </Grid>
+            </Grid>
+                
         </Grid>
         </Box>
     </>

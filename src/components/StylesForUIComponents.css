@@ -1,4 +1,6 @@
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 body, html {
@@ -52,7 +54,8 @@ input{
     background-size: 15px;
 
     margin-top: 7.5px;
-    max-height: 30px;
+    height: 25px;
+
     width: 100% !important;
 
     background-color: #e1e1e1 !important;
@@ -75,7 +78,7 @@ input{
 
 
     margin-top: 7.5px;
-    max-height: 35px;
+    height: 45px;
     width: 100% !important;
     background-color: #e1e1e1 !important;
     border-radius: 2px !important;
@@ -100,12 +103,31 @@ input{
     background-size: 100%;
 
 
-    min-width: calc(2571px/2.4) !important;
-    min-height: calc(1650px/2.4) !important;
+    min-width: calc(2871px/2.4) !important;
+    min-height: calc(1750px/2.4) !important;
 
-    width: calc(2571px/2.4) !important;
-    height: calc(1650px/2.4) !important;
+    border-radius: 15px;
+    width: calc(2871px/2.4) !important;
+    height: calc(1750px/2.4) !important;
     /* border: 1px solid #0aa70e; */
+}
+
+.Posts{
+    background: #49456a;
+    background-size: 100%;
+
+
+    min-width: calc(2871px/2.4) !important;
+    min-height: calc(1750px/2.4) !important;
+
+    border-radius: 15px;
+    width: calc(2871px/2.4) !important;
+    height: calc(1750px/2.4) !important;
+    /* border: 1px solid #0aa70e; */
+}
+
+.mainColor{
+    background:#6e68a0 !important;
 }
 
 .leftMenu{
@@ -289,11 +311,19 @@ div{
 }
 
 .mainPic{
-    background-image: url("../Images/pexels-roberto-nickson-2559941.jpg");
+    background-image: url("../Images/870874.jpg");
     background-repeat: no-repeat;
     object-fit: contain;
     background-size: 170%;
     background-position: -350px center;
+}
+
+.profilePic{
+    background-image: url("../Images/642030.jpg");
+    background-repeat: no-repeat;
+    object-fit: contain;
+    background-size: 170%;
+    background-position: center -150px;
 }
 
 .chat{
@@ -512,4 +542,120 @@ a{
 
     transition-property:all;
     transition-duration: 0.3s;
+}
+
+
+
+.searchBar_selector{
+    background: #b4b0d4 !important;
+   
+    padding: 10px;
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+.searchBar_selector:hover{
+    background: #dfddf5 !important;
+
+    transition-property:all;
+    transition-duration: 0.1s;
+    cursor: pointer;
+
+    /* display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    overflow-y: scroll; */
+}
+
+.chats_{
+    background: #a897d0;
+    transition-property:all;
+    transition-duration: 0.1s;
+    border-radius: 15px;
+    cursor: pointer;
+    color:white;
+}
+
+.chats_:hover{
+    background: #8376a1;
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+.chats_:active{
+    background: #a897d0;
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+.addButton{
+    background: #8376a1;
+    padding: 5px;
+    border-radius: 12px;
+
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+.addButton:hover{
+    background: #a897d0;
+
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+
+.addButton:active{
+    background: #dbcbff;
+    transform: scale(1.1);
+
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+.imgTry{
+    background: #2b2636;
+    display: none;
+}
+
+.ava_{
+    background-image: url("../Images/photo_5224695147579687712_x.jfif") !important;
+    background-repeat: no-repeat !important;
+    object-fit: contain !important;
+    background-size: 170% !important;
+    background-position: -55px -50px !important;
+}
+
+
+.profile_contacts{
+    background: #433f5e;
+    border-radius: 5px;
+    transition-property:all;
+    transition-duration: 0.1s;
+    color: white;
+
+    width: 100% !important;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile_contacts:hover{
+    background: #8079ad;
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+.profile_contacts:active{
+    background: #9d96ca;
+    transition-property:all;
+    transition-duration: 0.1s;
+}
+
+.contacts_box{
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 300px;
 }

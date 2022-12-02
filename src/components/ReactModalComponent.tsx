@@ -103,11 +103,11 @@ export const choiseTheContacts:any=(slideSet:any,contactsForGrid:any,setSelected
             {/* </Grid> */}
 
             <Box id="MyBoxID">
-              <List>
+              <List className="chatSection example" style={{height:"320px"}}>
                 {contactsForGrid.map((contact:any) => (
                   <ListItem
                     // onClick={() => handleListItemClick(contact)}
-                    key={contact} style={{background:"#605b83",borderRadius:"10px"}}>
+                    key={contact.id} >
                     <Box onClick={()=>setSelectedUser(contact)} style={{width:"100%"}}>
                         <Grid container style={{height:"90px"}} direction="row" className="chats" padding={1}>
                             <Grid xs={3} container item padding={1}>
@@ -243,7 +243,6 @@ export const Modal_obj:React.FC<ModalProps_VM>=({title,isOpen,onClose,children,s
     const setUser=(user:any)=>{
         setSelectedUser(user);
         console.log(user);
-        
     }
 
     const handleInput=(someText:any)=>{

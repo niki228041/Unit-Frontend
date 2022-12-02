@@ -14,18 +14,21 @@ import { useNavigate } from "react-router-dom";
 import { RemoveTokens } from '../api/jwtDecodeToken'
 import { useDispatch } from 'react-redux'
 import { AuthUser } from '../features/user/user-slice'
+import { useSelector } from 'react-redux'
 
 function RightMenu() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-    const LogOut=()=>{
-        dispatch(AuthUser(""));
-        RemoveTokens();
+  const userId:any = useSelector((state:any)=>state.user.user.Id);
 
-        navigate("/login");
-    }
+  const LogOut=()=>{
+      dispatch(AuthUser(""));
+      RemoveTokens();
+
+      navigate("/login");
+  }
 
 
   return (
@@ -44,9 +47,9 @@ function RightMenu() {
                     <img src={profile} style={{height:"20px"}}></img>
                 </Grid>
                 <Grid xs={9} className='choise_settings_texture' item container justifyContent="flex-start" alignContent="center" style={{color:"white",fontSize:"14px"}}>
-                    <Grid item>
+                    <Link to={"profile/" + userId} style={{width:"100%",height:"100%",alignItems:"center",display:"flex"}}>
                         Profile
-                    </Grid>
+                    </Link>
                 </Grid>
             </Grid>
             <Grid xs={1.8} item container>

@@ -97,9 +97,8 @@ const Chat=()=>{
         // navigate("/user/posts");
     }
 
-    function Message(messageText:string,someoneUserId:any,created:any)
+    function Message(messageText:string,someoneUserId:any,created:any,username:string)
     {
-        
         let isYourMessage:boolean = false;
 
         if(userId == someoneUserId)
@@ -117,15 +116,17 @@ const Chat=()=>{
 
         {/* alignSelf:"flex-end" && flexDirection:"row-reverse" */}
         
-        <Box className={messageClassNameType} style={{margin:"10px"}}>
-            <Box >
+        <Box className={messageClassNameType} style={{margin:"12px"}}>
+            <Box>
                 <img style={{height:"60px"}} src={ava}/>
+                <p style={{fontSize:"12px",lineHeight:"3px",paddingTop:"10px",color:"#bb9dcf"}}>{username}</p>
             </Box>
-            <Box style={{background:"#827abf",maxWidth:"300px",overflowWrap: "break-word",color:"white"}} marginLeft={2} marginRight={2} padding={2} borderRadius={2}>
+            <Box style={{background:"#827abf",maxWidth:"300px",overflowWrap: "break-word",color:"white",margin:"10px"}} marginLeft={2} marginRight={2} padding={2} borderRadius={2}>
                 {/* <img style={{maxHeight:"270px",marginBottom:"20px"}} src={ava}/>
                 <br></br> */}
+
                 {messageText}
-                <div className={messageTimeClassNameType}>
+                <div className={messageTimeClassNameType} style={{}}>
                     {parseDate(created)}
                 </div>
 
@@ -154,10 +155,10 @@ const Chat=()=>{
         return(
         <div key={chatId} onClick={()=>clickOnChat(chatId)}>
             <Grid className='chats' id={name} item container borderRadius={3} direction="row" alignContent="center" padding={2} marginTop={1}>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <img src={ava} style={{height:"60px"}}></img>
                 </Grid>
-                <Grid item xs={8} marginTop="20px" marginLeft={2}>
+                <Grid item xs={7} marginTop="20px" marginLeft={2}>
                     #{name}
                 </Grid>
             </Grid>
@@ -177,7 +178,7 @@ const Chat=()=>{
         }
         if(val)
         {
-            var mess = messages_.map((message:any)=>Message(message.message.text,message.userId,message.message.created));
+            var mess = messages_.map((message:any)=>Message(message.message.text,message.userId,message.message.created,message.userName));
             return mess;
         }
     }
@@ -206,7 +207,7 @@ const Chat=()=>{
 
 
     return (
-    <Grid item container direction="column" padding={2} className="chat" justifyContent="end">
+    <Grid item container direction="column" padding={2} className="Posts" justifyContent="end">
         
         <Grid xs={1} item container direction="row" padding={1}>
             <div onClick={toggleModal}>
@@ -221,12 +222,12 @@ const Chat=()=>{
 
         <Grid xs={10.5} item container direction="row" padding={0.2}>
             <Grid xs={3} item container style={{background:"#121215"}} borderRadius={3} direction="column" padding={1}>
-                <Box className="chatSection example" style={{height:"550px"}}>
+                <Box className="chatSection example" style={{height:"600px"}}>
                     {ChatBuilder()}
                 </Box>
             </Grid>
             <Grid xs={8.8} item container sx={{ ml:2 }} style={{background:"#121215"}} borderRadius={3} direction="column" padding={1} justifyContent="end">
-                <Box className="chatSection example" style={{height:"485px"}}>
+                <Box className="chatSection example" style={{height:"525px"}}>
                     {MessageBuilder()}
                     {/* {Message("I fall in love with you babe",true)}
                     {Message("Damn how are u??",false)}
