@@ -4,7 +4,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 export const apiSlice:any = createApi({
     reducerPath:"api",
     baseQuery:fetchBaseQuery({baseUrl:"https://localhost:5001"}),
-    tagTypes:['Messages','Chats','Contacts'],
+    tagTypes:['Messages','Chats','Contacts','Avatar'],
     endpoints:(builder)=>({
         getMessages:builder.query<any,any>({
             query:(todo)=>({
@@ -70,9 +70,27 @@ export const apiSlice:any = createApi({
             body:todo
           }),
         }),
+        getAvatar:builder.query<any,any>({
+          query:(todo)=>({
+            url:'/User/GetAvatar',
+            method:"POST",
+            contentType: 'application/json',
+            body:todo
+          }),
+          providesTags:result=>['Avatar']
+        }),
+        setAvatar:builder.mutation<any,any>({
+          query:(todo)=>({
+            url:'/User/UploadAvatar',
+            method:"POST",
+            contentType: 'application/json',
+            body:todo
+          }),
+          invalidatesTags:['Avatar']
+        }),
     })
 })
 
 
-export const{useGetMessagesQuery,useGetChatsQuery,useGetContactsQuery,useGetUsersQuery,useGetUserQuery} = apiSlice
+export const{useGetMessagesQuery,useGetChatsQuery,useGetContactsQuery,useGetUsersQuery,useGetUserQuery,useGetAvatarQuery} = apiSlice
 

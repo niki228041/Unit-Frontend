@@ -27,6 +27,7 @@ const styling ={
 }
 
 export const MainPost=()=>{
+
     return <>
     <ThemeProvider theme={mdTheme}>
 

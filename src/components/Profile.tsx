@@ -1,5 +1,5 @@
 import { Button, Grid, Input} from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ava from '../Images/ava.png'
 import add from '../Images/add-image.png'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,18 +7,20 @@ import { Box } from '@mui/system'
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { apiSlice, useGetContactsQuery ,useGetUserQuery} from '../features/user/apiSlice'
+import { apiSlice, useGetContactsQuery ,useGetUserQuery,useGetAvatarQuery} from '../features/user/apiSlice'
 import { useParams } from 'react-router-dom'
 
 const Profile=()=> {
 
   var contacts:any = [{}];
   var singleUser:any = [{}];
+  var image = new Image();
+
+  var avaBackgroundColor = "white";
   
 
-
   const myUserId:any = useSelector((state:any)=>state.user.user.Id);
-
+  
 
   const params = useParams();
 
@@ -31,6 +33,7 @@ const Profile=()=> {
 
 
   const [addContact,{}] = apiSlice.useAddContactMutation();
+  const [setAvatar,{}] = apiSlice.useSetAvatarMutation();
 
   contacts = data?.contacts;
 
@@ -43,21 +46,89 @@ const Profile=()=> {
 
   const [selectedUser, setSelectedUser]:any = useState({});
 
+
+  
+  //console.log(avaBackgroundColor);
+
+  // var blob = new Blob(bytesOfImage, {type: "application/zip"});
+  // const ava = URL.createObjectURL(blob);
+
+
+  // console.log(my_file_3);
+
   
   const setUser=()=>{
     const requestToAddContact = {userId:myUserId,contactId:params.userId}
     addContact(requestToAddContact);
+    avaBackgroundColor = '';
     console.log(user);
   }
+
+  const changeAvatar=(event:React.ChangeEvent<HTMLInputElement>)=>{
+    const fileInput = event.target.files;
+    
+    for (const file of fileInput!) {
+      var fileBytes = toBase64(file);
+
+      fileBytes.then((res:any)=>{
+        // console.log(res);
+        var bytesToRequest = res.split(',')[1];
+        var setAvatarRequest = {image:{data:bytesToRequest},userId:myUserId};
+        setAvatar(setAvatarRequest);
+        console.log(setAvatarRequest);
+        
+        avaBackgroundColor = '';
+        
+      })
+      // var final = ;
+    }
+
+
+    // console.log(fileInput);
+  }
+
+  const toBase64 = (file:File) => new Promise((resolve, reject) => {
+    // console.log(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+
+  });
+
+
+
+
+  //requestToGetAvatar
+  const requestToUser = {userId:params.userId};
+  const {data:bytesOfImage} = useGetAvatarQuery(requestToUser);
+  
+  console.log(avaBackgroundColor);
+  
+  if(avaBackgroundColor == "white" && bytesOfImage != null || avaBackgroundColor == '')
+  {
+    // console.log("i`m changing the value of my avatar background");
+    image.src = 'data:image/gif;base64,' + bytesOfImage.message;
+    // document.body.appendChild(image);
+
+    avaBackgroundColor = 'url('+image.src+')';
+  }
+
+  useEffect(()=>{
+  },[]);
 
   return (
     <Grid container className='Posts' style={{background:"#49456a",width:"600px",height:"200px"}} padding={1} direction="column">
       <Grid xs={6.5} item container borderRadius={2} direction="column" justifyContent="end" className='profilePic'>
         
         <Grid xs={4} className="absolute " style={{width:"200px"}} item container borderRadius={2} marginBottom={3} marginLeft={2}>
-          <div style={{height:"200px",width:"200px",background:"white",borderRadius:"100%"}} className="ava_"></div>
+          <div style={{height:"200px",width:"200px",backgroundImage:avaBackgroundColor,borderRadius:"100%",backgroundSize:"cover",backgroundPosition:"center center"}} ></div>
+          {/* className="ava_" */}
           <div className="absolute" style={{height:"37px",width:"37px",borderRadius:"15px",display:"flex",marginLeft:"150px",marginTop:"10px"}}>
-            <img className="addButton" style={{height:"35px",margin:"auto",paddingLeft:"8px"} } src={add}></img>
+            <label htmlFor='add_img' style={{cursor:"pointer"}}>
+              <img className="addButton" style={{height:"35px",margin:"auto",paddingLeft:"8px"} } src={add}></img>
+              </label>
+            <input multiple className="form-control" type='file' name="add_img" id="add_img" style={{display: "none"}} onChange={changeAvatar} />
           </div>
         </Grid>
 
